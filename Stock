@@ -1,0 +1,37 @@
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 280,
+    "GOOGL": 150,
+    "AMZN": 130,
+    "MSFT": 320
+}
+
+total_investment = 0
+
+while True:
+    stock = input("Enter stock symbol (AAPL, TSLA, etc.) or 'done' to finish: ").upper()
+    
+    if stock == 'DONE':
+        break
+    
+    if stock not in stock_prices:
+        print("Stock not found. Try again.")
+        continue
+
+    try:
+        quantity = int(input(f"Enter quantity of {stock}: "))
+        if quantity <= 0:
+            print("Quantity must be positive.")
+            continue
+    except ValueError:
+        print("Invalid quantity.")
+        continue
+
+    price = stock_prices[stock]
+    investment = price * quantity
+    total_investment += investment
+
+    print(f"{stock} @ ${price} × {quantity} = ${investment:.2f}\n")
+
+print("===")
+print(f"Total Investment: ${total_investment:.2f}")
